@@ -1,0 +1,5 @@
+config.yaml
+*svc*
+
+# Python stuff
+__pycache__

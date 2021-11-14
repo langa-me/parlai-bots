@@ -4,10 +4,12 @@ tasks:
       cd ..
       git clone https://github.com/facebookresearch/ParlAI
       mv parlai-bots ParlAI/parlai_internal
+      cd ParlAI
       virtualenv env
       source env/bin/activate
       export PIP_USER=false
-      pip install parlai
+      pip install -e .
+      cd ./parlai_internal
       pip install -r requirements-test.txt
   - name: Generate service account
     command: |

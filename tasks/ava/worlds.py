@@ -11,27 +11,26 @@ from parlai.chat_service.services.messenger.worlds import OnboardWorld
 from parlai.core.agents import create_agent_from_shared
 
 
-# ---------- Chatbot demo ---------- #
-class MessengerBotChatOnboardWorld(OnboardWorld):
+class AvaOnboardWorld(OnboardWorld):
     """
     Example messenger onboarding world for Chatbot Model.
     """
 
     @staticmethod
     def generate_world(opt, agents):
-        return MessengerBotChatOnboardWorld(opt=opt, agent=agents[0])
+        return AvaOnboardWorld(opt=opt, agent=agents[0])
 
     def parley(self):
         self.episodeDone = True
 
 
-class MessengerBotChatTaskWorld(World):
+class AvaTaskWorld(World):
     """
     Example one person world that talks to a provided agent (bot).
     """
 
     MAX_AGENTS = 1
-    MODEL_KEY = 'blender_90M'
+    MODEL_KEY = 'blenderbot2_400M'
 
     def __init__(self, opt, agent, bot):
         self.agent = agent
@@ -43,11 +42,11 @@ class MessengerBotChatTaskWorld(World):
     def generate_world(opt, agents):
         if opt['models'] is None:
             raise RuntimeError("Model must be specified")
-        return MessengerBotChatTaskWorld(
+        return AvaTaskWorld(
             opt,
             agents[0],
             create_agent_from_shared(
-                opt['shared_bot_params'][MessengerBotChatTaskWorld.MODEL_KEY]
+                opt['shared_bot_params'][AvaTaskWorld.MODEL_KEY]
             ),
         )
 
@@ -91,8 +90,7 @@ class MessengerBotChatTaskWorld(World):
         self.agent.shutdown()
 
 
-# ---------- Overworld -------- #
-class MessengerOverworld(World):
+class AvaMessengerOverworld(World):
     """
     World to handle moving agents to their proper places.
     """
@@ -105,7 +103,7 @@ class MessengerOverworld(World):
 
     @staticmethod
     def generate_world(opt, agents):
-        return MessengerOverworld(opt, agents[0])
+        return AvaMessengerOverworld(opt, agents[0])
 
     @staticmethod
     def assign_roles(agents):

@@ -1,0 +1,13 @@
+version: '3'
+services:
+  parlai:
+    image: louis030195/ava:latest-gpu
+    volumes:
+      - ${PWD}/data:/opt/venv/lib/python3.8/site-packages/data
+      - ${PWD}/config.yaml:/app/config.yaml
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+volumes:
+  data:

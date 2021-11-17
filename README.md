@@ -28,3 +28,14 @@ websocat ws://0.0.0.0:8080/websocket
 # {"text": "Hi, my name is Louis, I am a space explorer, currently between Mars and Jupyter, do you have an idea where I can grab some food?"}
 # {"text": "That ' s great , where I am at the moment is a planet called Mars which isn ' t good for eating and has no food."}
 ```
+
+## TODO
+
+implement these
+```py
+from parlai.core.worlds import World
+from parlai.chat_service.services.messenger.worlds import OnboardWorld
+from parlai.core.agents import create_agent_from_shared
+```
+
+at least custom onboard world and stuff, maybe tweak websocket etc.

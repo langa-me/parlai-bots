@@ -30,7 +30,7 @@ class AvaTaskWorld(World):
     """
 
     MAX_AGENTS = 1
-    MODEL_KEY = 'blenderbot2_400M'
+    MODEL_KEY = 'blender_90M' # 'blenderbot2_400M' # TODO: make this fucking parametrable from config
 
     def __init__(self, opt, agent, bot):
         self.agent = agent
@@ -59,8 +59,7 @@ class AvaTaskWorld(World):
             self.agent.observe(
                 {
                     'id': 'World',
-                    'text': 'Welcome to the ParlAI Chatbot demo. '
-                    'You are now paired with a bot - feel free to send a message.'
+                    'text': 'Welcome to Langame ava. '
                     'Type [DONE] to finish the chat, or [RESET] to reset the dialogue history.',
                 }
             )
@@ -118,8 +117,8 @@ class AvaMessengerOverworld(World):
             self.agent.observe(
                 {
                     'id': 'Overworld',
-                    'text': 'Welcome to the overworld for the ParlAI messenger '
-                    'chatbot demo. Please type "begin" to start, or "exit" to exit',
+                    'text': 'Welcome to the Langame Ava overworld. '
+                    'Please type "begin" to start, or "exit" to exit',
                     'quick_replies': ['begin', 'exit'],
                 }
             )

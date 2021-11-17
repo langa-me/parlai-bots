@@ -1,0 +1,28 @@
+tasks:
+  default:
+    onboard_world: AvaOnboardWorld # MessengerBotChatOnboardWorld
+    task_world: AvaTaskWorld # MessengerBotChatTaskWorld
+    timeout: 1800
+    agents_required: 1
+task_name: ava # chatbot
+world_module: parlai_internal.tasks.ava.worlds # parlai.chat_service.tasks.chatbot.worlds
+overworld: AvaMessengerOverworld # MessengerOverworld
+max_workers: 30
+opt:
+  debug: True
+  models:
+    blender_90M:
+      model: transformer/generator
+      model_file: zoo:blender/blender_90M/model
+      interactive_mode: True
+      # no_cuda: True
+    # blenderbot2_400M:
+    #   model: projects.blenderbot2.agents.blenderbot2:BlenderBot2FidAgent
+    #   model_file: zoo:blenderbot2/blenderbot2_400M/model
+    #   interactive_mode: True
+    #   # no_cuda: False
+    #   doc_chunk_split_mode: word
+    #   override:
+    #     knowledge_access_method: memory_only
+    #     search_server: None
+        #search_server: 0.0.0.0:8081

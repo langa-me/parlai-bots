@@ -18,3 +18,13 @@ git fetch upstream
 git checkout main
 git rebase upstream/main
 ```
+
+## Basic calls
+
+```bash
+websocat ws://0.0.0.0:8080/websocket
+# {"text": "begin"}
+# {"text": "begin"}
+# {"text": "Hi, my name is Louis, I am a space explorer, currently between Mars and Jupyter, do you have an idea where I can grab some food?"}
+# {"text": "That ' s great , where I am at the moment is a planet called Mars which isn ' t good for eating and has no food."}
+```

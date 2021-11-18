@@ -1,27 +1,28 @@
 #!/usr/bin/env python3
 
-# Copyright (c) Facebook, Inc. and its affiliates.
-# This source code is licensed under the MIT license found in the
-# LICENSE file in the root directory of this source tree.
-#
 # py parlai/chat_service/tasks/overworld_demo/run.py --debug --verbose
 
 from parlai.core.worlds import World
-from parlai.chat_service.services.messenger.worlds import OnboardWorld
 from parlai.core.agents import create_agent_from_shared
 
 
-class AvaOnboardWorld(OnboardWorld):
-    """
-    Example messenger onboarding world for Chatbot Model.
-    """
+class AvaOnboardWorld(World):
+    def __init__(self, opt, agent):
+        self.agent = agent
+        self.episodeDone = False
 
     @staticmethod
     def generate_world(opt, agents):
-        return AvaOnboardWorld(opt=opt, agent=agents[0])
+        return AvaOnboardWorld(opt, agents[0])
 
     def parley(self):
         self.episodeDone = True
+
+    def episode_done(self):
+        return self.episodeDone
+
+    def shutdown(self):
+        pass
 
 
 class AvaTaskWorld(World):

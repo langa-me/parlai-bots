@@ -31,7 +31,7 @@ class AvaTaskWorld(World):
     """
 
     MAX_AGENTS = 1
-    MODEL_KEY = 'blender_90M' # 'blenderbot2_400M' # TODO: make this fucking parametrable from config
+    MODEL_KEY = 'blender_90M' # 'blenderbot2_400M' 'blender_90M' # TODO: make this fucking parametrable from config
 
     def __init__(self, opt, agent, bot):
         self.agent = agent

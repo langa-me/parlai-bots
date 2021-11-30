@@ -1,0 +1,16 @@
+tasks:
+  default:
+    onboard_world: AvaOnboardWorld
+    task_world: AvaTaskWorld
+    timeout: 1800
+    agents_required: 1
+task_name: ava
+world_module: parlai_internal.tasks.ava.worlds
+overworld: AvaMessengerOverworld
+max_workers: 5
+opt:
+  models:
+    blender_400Mdistill:
+      model: transformer/generator
+      model_file: zoo:blender/blender_400Mdistill/model
+      no_cuda: True

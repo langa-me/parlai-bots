@@ -1,14 +1,20 @@
 version: '3'
 services:
   parlai:
-    image: louis030195/ava:latest-cpu
+    image: gcr.io/langame-dev/blenderbot:latest
     # infinite loop
     # entrypoint: tail -f /dev/null
+    command:
+      - --port
+      - "8080"
+      - "--config_path"
+      - "/etc/secrets/config.yaml"
     volumes:
       - ${PWD}/data:/ParlAI/data
-      - ${PWD}/tasks/ava/config.yaml:/ParlAI/config.yaml
+      - ${PWD}/tasks/ava/blender_400Mdistill.yaml:/etc/secrets/config.yaml
+      # - ${PWD}/tasks/ava/blender_90M.yaml:/etc/secrets/config.yaml
     expose:
-      - "8080"
+      - "80"
     ports:
       - "8080:8080"
 volumes:

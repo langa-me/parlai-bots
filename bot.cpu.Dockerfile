@@ -8,6 +8,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 RUN git clone https://github.com/facebookresearch/ParlAI
 WORKDIR /ParlAI
 COPY ./tasks ./parlai_internal/tasks
+COPY ./services ./parlai_internal/services
 RUN pip install transformers fairseq && pip install -e .
 
 # FROM python:3.8-slim AS build-image
@@ -23,6 +24,6 @@ ENV PYTHONUNBUFFERED True
 # WORKDIR $APP_HOME
 # COPY run.py .
 COPY run.py ./parlai_internal/run.py
-
+ENV PORT 8080
 ENTRYPOINT ["python", "./parlai_internal/run.py"]
-CMD ["--config_path", "./config.yaml", "--port", "8080"]
+CMD ["--config_path", "/etc/secrets/config.yaml", "--port", "8080"]

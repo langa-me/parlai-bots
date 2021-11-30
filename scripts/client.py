@@ -11,7 +11,7 @@ def talk():
     Connect to a websocket server and send a message.
     """
     ws = websocket.WebSocket()
-    ws.connect("ws://0.0.0.0:80")
+    ws.connect("ws://localhost:8080")
     # if succeed, loop for user input to send to the websocket
     while True:
         message = input("Enter a message: ")

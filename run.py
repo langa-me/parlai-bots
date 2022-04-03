@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 
-"""
-Websocket Runner.
-"""
 from parlai.core.params import ParlaiParser
 from parlai_internal.services import CustomWebsocketManager
 import parlai.chat_service.utils.config as config_utils

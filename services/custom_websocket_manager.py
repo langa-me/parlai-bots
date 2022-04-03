@@ -1,9 +1,3 @@
-
-
-"""
-TODO:write something
-"""
-
 from parlai.chat_service.services.websocket.websocket_manager import WebsocketManager
 from parlai.chat_service.services.websocket.sockets import MessageSocketHandler
 import tornado

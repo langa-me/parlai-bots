@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-# py parlai/chat_service/tasks/overworld_demo/run.py --debug --verbose
-
 from parlai.core.worlds import World
 from parlai.core.agents import create_agent_from_shared
 
@@ -31,7 +29,7 @@ class AvaTaskWorld(World):
     """
 
     MAX_AGENTS = 1
-    MODEL_KEY = 'blender_90M' # 'blenderbot2_400M' 'blender_90M' # TODO: make this fucking parametrable from config
+    MODEL_KEY = 'langame'
 
     def __init__(self, opt, agent, bot):
         self.agent = agent
@@ -73,14 +71,8 @@ class AvaTaskWorld(World):
                 self.model.reset()
                 self.agent.observe({"text": "[History Cleared]", "episode_done": False})
             else:
-                print("===act====")
-                print(a)
-                print("~~~~~~~~~~~")
                 self.model.observe(a)
                 response = self.model.act()
-                print("===response====")
-                print(response)
-                print("~~~~~~~~~~~")
                 self.agent.observe(response)
 
     def episode_done(self):
@@ -126,7 +118,7 @@ class AvaMessengerOverworld(World):
             self.first_time = False
         a = self.agent.act()
         if a is not None and a['text'].lower() == 'exit':
-            self.episode_done = True
+            self.episodeDone = True
             return 'EXIT'
         if a is not None and a['text'].lower() == 'begin':
             self.episodeDone = True

@@ -16,7 +16,7 @@ dev: ## Set the GCP project to dev
 	gcloud config set project langame-dev
 
 docker/build: ## [Local development] build the docker image
-	docker build -t ${REGISTRY}:${VERSION} -t ${REGISTRY}:latest . -f ./Dockerfile
+	docker buildx build -t ${REGISTRY}:${VERSION} -t ${REGISTRY}:latest --platform linux/amd64 . -f ./Dockerfile
 
 docker/run: docker/build ## [Local development] run the docker container
 	docker run --rm --name parlai_${VERSION} \

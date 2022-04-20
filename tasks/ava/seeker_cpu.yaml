@@ -67,5 +67,5 @@ opt:
         # search_server: None
         no_cuda: True
         init_opt: gen/seeker_dialogue
-        search_server: 0.0.0.0:8081
+        search_server: 0.0.0.0:8082
         skip_generation: False

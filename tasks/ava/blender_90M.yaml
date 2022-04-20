@@ -10,14 +10,11 @@ overworld: AvaMessengerOverworld # MessengerOverworld
 max_workers: 5
 opt:
   # debug: True
-  gpu: False
   models:
     langame:
       model: transformer/generator
       model_file: zoo:blender/blender_90M/model
       no_cuda: True
+      interactive_mode: True
       override:
         no_cuda: True
-
-additional_args:
-  foo: bar

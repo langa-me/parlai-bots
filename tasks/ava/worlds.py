@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
 from parlai.core.worlds import World
-from parlai.core.agents import create_agent_from_shared
-
+from parlai.core.agents import create_agent_from_shared, Agent
+from parlai.core.torch_agent import TorchAgent
+from parlai.chat_service.services.websocket.agents import WebsocketAgent
+from projects.seeker.agents.seeker import SeekerAgent
+from parlai.agents.transformer.transformer import TransformerGeneratorAgent
 
 class AvaOnboardWorld(World):
     def __init__(self, opt, agent):
@@ -31,10 +34,10 @@ class AvaTaskWorld(World):
     MAX_AGENTS = 1
     MODEL_KEY = 'langame'
 
-    def __init__(self, opt, agent, bot):
-        self.agent = agent
+    def __init__(self, opt, agent: WebsocketAgent, bot):
+        self.agent: WebsocketAgent = agent
         self.episodeDone = False
-        self.model = bot
+        self.model: TransformerGeneratorAgent = bot
         self.first_time = True
 
     @staticmethod
@@ -65,7 +68,12 @@ class AvaTaskWorld(World):
             self.first_time = False
         a = self.agent.act()
         if a is not None:
-            if '[DONE]' in a['text']:
+            if '[CONTEXT]' in a['text']:
+                # insert some history in the bot
+                a['text'] = a['text'].replace('[CONTEXT]', '')
+                self.model.history.add_reply(a['text'])
+                self.agent.observe({"text": "[CONTEXT INSERTED]", "episode_done": False})
+            elif '[DONE]' in a['text']:
                 self.episodeDone = True
             elif '[RESET]' in a['text']:
                 self.model.reset()
